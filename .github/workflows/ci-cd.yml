@@ -13,15 +13,13 @@ permissions:
 
 jobs:
   test:
-    name: Run tests
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -32,10 +30,14 @@ jobs:
         run: npm test
 
       - name: Build project
-        run: npm run build
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp style.css dist/
+          cp -r src dist/src
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy Website
     needs: test
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -58,7 +60,12 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      - name: Build website
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp style.css dist/
+          cp -r src dist/src
 
       - uses: actions/configure-pages@v5
 
@@ -66,6 +73,6 @@ jobs:
         with:
           path: ./dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
