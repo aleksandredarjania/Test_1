@@ -1,0 +1,17 @@
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #101827; color: #eef2ff; font-family: Inter, system-ui, sans-serif; }
+.app { width: min(100%, 620px); padding: 40px; border: 1px solid #334155; border-radius: 22px; background: #182438; box-shadow: 0 24px 80px #0005; }
+.eyebrow { color: #60a5fa; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+h1 { margin: 8px 0; font-size: clamp(36px, 7vw, 54px); }
+.subtitle { color: #a8b4c7; margin-bottom: 28px; }
+form { display: flex; gap: 10px; }
+input { min-width: 0; flex: 1; padding: 14px; border: 1px solid #475569; border-radius: 10px; background: #0f172a; color: white; }
+button { padding: 0 18px; border: 0; border-radius: 10px; background: #3b82f6; color: white; font-weight: 700; cursor: pointer; }
+button:hover { background: #2563eb; }
+ul { padding: 0; list-style: none; }
+li { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding: 13px; border-radius: 10px; background: #25344b; }
+li.done span { color: #94a3b8; text-decoration: line-through; }
+li button { padding: 8px 11px; background: #475569; }
+#empty-state, footer { color: #94a3b8; font-size: 13px; }
+footer { margin-top: 34px; border-top: 1px solid #334155; padding-top: 18px; }
+@media (max-width: 480px) { .app { padding: 25px; } form { flex-direction: column; } button { padding: 13px; } }
